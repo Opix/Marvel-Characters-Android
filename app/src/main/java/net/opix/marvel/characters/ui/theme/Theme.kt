@@ -5,9 +5,14 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
+
+val defaultPadding = 16.dp
+val defaultHalfPadding = 8.dp
+val defaultIconSize = 32.dp
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
+    primary = background,
     primaryVariant = Purple700,
     secondary = Teal200
 )
@@ -15,8 +20,8 @@ private val DarkColorPalette = darkColors(
 private val LightColorPalette = lightColors(
     primary = Purple500,
     primaryVariant = Purple700,
-    secondary = Teal200
-
+    secondary = Teal200,
+    background = background
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
