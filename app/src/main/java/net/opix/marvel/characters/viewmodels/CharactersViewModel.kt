@@ -17,7 +17,7 @@ class CharactersViewModel(private val repository: CharactersRepository = Charact
     // This is exposed as immutable in MainActivity.  mutableCharactersState above is private so MainActivity will not see directly.
     // Another approach:
     // private val resultState: State<RepositoryResult<List<Character>>> = mutableCharactersState
-    val eventsState: RepositoryResult<List<Character>>
+    val charactersState: RepositoryResult<List<Character>>
         get() {
             return mutableCharactersState.value
         }

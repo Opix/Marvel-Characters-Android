@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import net.opix.marvel.characters.extensions.md5Hash
 
 object ServiceFactory {
-    inline fun <reified T> createService(): T = retrofit(baseUrl = BuildConfig.BASE_URL).create(T::class.java)
+    inline fun <reified T> createService(): T = retrofit(baseUrl = "${BuildConfig.BASE_URL}v1/public/").create(T::class.java)
 
     fun retrofit(baseUrl: String): Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
@@ -24,11 +24,5 @@ object ServiceFactory {
         })
 
         return builder.build()
-    }
-
-    private fun makeHash(): String {
-        val timeStamp = System.currentTimeMillis().toString()
-
-        return "$timeStamp${BuildConfig.MARVEL_PRIVATE_KEY}${BuildConfig.MARVEL_PUBLIC_KEY}".md5Hash
     }
 }

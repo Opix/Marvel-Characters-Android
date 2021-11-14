@@ -7,37 +7,36 @@ import net.opix.marvel.characters.model.Character
 import net.opix.marvel.characters.model.CharactersRepository
 
 class CharacterDetailsViewModel(private val savedStateHandle: SavedStateHandle): ViewModel() {
-    var eventState = mutableStateOf<Character?>(null)
+    var characterState = mutableStateOf<Character?>(null)
     private val repository: CharactersRepository = CharactersRepository.getInstance()
 
     init {
-        val eventId = savedStateHandle.get<Int>("event_id") ?: 0
-        eventState.value = repository.getCharacter(eventId)
+        val characterId = savedStateHandle.get<Int>("character_id") ?: 0
+        characterState.value = repository.getCharacter(characterId)
     }
 
-    val event: Character?
+    val character: Character?
         get() {
-            return eventState.value
+            return characterState.value
         }
 
-    fun getPhone(): String? {
-        return event?.phone
-    }
+    val name: String
+        get() {
+            return character?.name ?: "N/A"
+        }
 
-    fun generateMessage(): String? {
-        event?.let { event ->
-            var message = event.title
-            message += System.lineSeparator()
-            message += System.lineSeparator()
-            message += event.dateAsString
-            message += System.lineSeparator()
-            message += System.lineSeparator()
-            message += event.phone ?: ""
-            message += System.lineSeparator()
-            message += System.lineSeparator()
-            message += event.description ?: ""
+    val description: String
+        get() {
+            return character?.description ?: "N/A"
+        }
 
-            return message
-        } ?: return null
-    }
+    val thumbnail: String
+        get() {
+            return character?.thumbnail ?: ""
+        }
+
+    val largeImage: String
+        get() {
+            return character?.largeImage ?: ""
+        }
 }

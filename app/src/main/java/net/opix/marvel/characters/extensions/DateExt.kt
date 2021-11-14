@@ -10,8 +10,7 @@ val Date.eventDateFormat: String
     get() {
         val sdf = SimpleDateFormat(MMMM_d_YYYY_h_mm_a, Locale.getDefault())
         sdf.timeZone = TimeZone.getDefault()
-        val dateTimeString = sdf.format(this)
-        return dateTimeString.replace("AM", "am").replace("PM", "pm")
+        return sdf.format(this)
     }
 
 val Date.localDateAsString: String

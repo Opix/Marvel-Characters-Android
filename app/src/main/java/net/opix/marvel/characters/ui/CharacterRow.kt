@@ -46,7 +46,7 @@ fun CharacterRow(event: Character, navigationCallback: (Int) -> Unit) {
     ) {
         Box {
             GlideImage(
-                imageModel = event.image,
+                imageModel = event.largeImage,
                 contentScale = ContentScale.Crop,
                 placeHolder = ImageBitmap.imageResource(R.drawable.placeholder_nomoon),
                 error = ImageBitmap.imageResource(R.drawable.placeholder_nomoon),
@@ -56,12 +56,10 @@ fun CharacterRow(event: Character, navigationCallback: (Int) -> Unit) {
                 modifier = Modifier
                     .padding(defaultPadding)
                     .wrapContentHeight()) {
-                CardText(event.dateAsString, 14)
-
-                CardText(event.title, 24, FontWeight.Bold)
+                CardText(event.name, 24, FontWeight.Bold)
 
                 CardText(
-                    event.combinedLocation,
+                    event.description,
                     14,)
                 CardText(event.description, 16,)
             }

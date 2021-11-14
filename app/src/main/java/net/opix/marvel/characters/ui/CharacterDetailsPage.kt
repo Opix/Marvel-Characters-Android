@@ -39,7 +39,7 @@ fun DetailsBody(viewModel: CharacterDetailsViewModel) {
     Column(verticalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier.verticalScroll(rememberScrollState())) {
         GlideImage(
-            imageModel = viewModel.event?.image,
+            imageModel = viewModel.character?.largeImage,
             contentScale = ContentScale.FillWidth,
             placeHolder = ImageBitmap.imageResource(R.drawable.placeholder_nomoon),
             error = ImageBitmap.imageResource(R.drawable.placeholder_nomoon),
@@ -47,13 +47,8 @@ fun DetailsBody(viewModel: CharacterDetailsViewModel) {
 
         // The image above is not padded intentioanlly.
         Column (Modifier.padding(horizontal = defaultPadding)) {
-                DetailsText(viewModel.event?.dateAsString, 15)
-
-                DetailsText(viewModel.event?.title, 28, FontWeight.Bold)
-
-                DetailsText(viewModel.event?.combinedLocation, 15)
-
-                DetailsText(viewModel.event?.description,17)
+                DetailsText(viewModel.name, 28, FontWeight.Bold)
+                DetailsText(viewModel.description,17)
             }
         }
 }
@@ -81,15 +76,13 @@ fun CharacterDetailsPage(viewModel: CharacterDetailsViewModel, onBack: () -> Uni
 
                 actions = {
                     ShowActions(onCall = {
-                        viewModel.getPhone()?.let {
                             val intent = Intent(Intent.ACTION_DIAL)
-                            intent.setData(Uri.parse("tel:" + it))
+                            intent.setData(Uri.parse("tel:" + "8582328806"))
                             context.startActivity(intent)
-                        }
                     }, onShare = {
-                        viewModel.generateMessage()?.let {
-                            share(context, it)
-                        }
+//                        viewModel.generateMessage()?.let {
+//                            share(context, it)
+//                        }
                     })
                 },
 
